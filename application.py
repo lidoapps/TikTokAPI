@@ -23,8 +23,11 @@ def hello_world():
 
 @application.route('/get_trending')
 def get_trending():
-    trending_videos = asyncio.run(fetch_trending_videos())
-    return jsonify(trending_videos)
+    try:
+        trending_videos = asyncio.run(fetch_trending_videos())
+        return jsonify(trending_videos)
+    except Exception as e:
+        return jsonify({"error": str(e)})
 
 
 @application.route('/get_user', methods=['GET'])
