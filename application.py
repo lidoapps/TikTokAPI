@@ -21,7 +21,7 @@ async def fetch_trending_videos():
 def hello_world():
     return 'Hello world.'
 
-@application.route('/get_trending', methods=['GET'])
+@application.route('/get_trending'])
 def get_trending():
     trending_videos = asyncio.run(fetch_trending_videos())
     return jsonify(trending_videos)
@@ -32,4 +32,6 @@ def get_user():
     trending_videos = asyncio.run(fetch_trending_videos())
     return jsonify(trending_videos)
 
+if __name__ == "__main__":
+       app.run(host='0.0.0.0', port=5001)
 
