@@ -4,7 +4,8 @@ from flask import Flask, jsonify
 import asyncio
 import os
 
-app = Flask(__name__)
+application = Flask(__name__)
+app = application
 
 ms_token = os.environ.get("ms_token", None)  # set your own ms_token
 
@@ -16,21 +17,19 @@ async def fetch_trending_videos():
             trending_videos.append(video.as_dict)
         return trending_videos
     
-@app.route('/')
+@application.route('/')
 def hello_world():
     return 'Hello world.'
 
-@app.route('/get_trending', methods=['GET'])
+@application.route('/get_trending', methods=['GET'])
 def get_trending():
     trending_videos = asyncio.run(fetch_trending_videos())
     return jsonify(trending_videos)
 
 
-@app.route('/get_user', methods=['GET'])
+@application.route('/get_user', methods=['GET'])
 def get_user():
     trending_videos = asyncio.run(fetch_trending_videos())
     return jsonify(trending_videos)
 
-if __name__ == "__main__":
-       app.run(host='0.0.0.0', port=5000)
 
