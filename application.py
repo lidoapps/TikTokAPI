@@ -28,5 +28,5 @@ def get_user():
     return jsonify(trending_videos)
 
 if __name__ == "__main__":
-       app.run()
+       app.run(host='0.0.0.0', port=5000)
 
