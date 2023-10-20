@@ -15,6 +15,10 @@ async def fetch_trending_videos():
         async for video in api.trending.videos(count=10):
             trending_videos.append(video.as_dict)
         return trending_videos
+    
+@app.route('/')
+def hello_world():
+    return 'Hello world.'
 
 @app.route('/get_trending', methods=['GET'])
 def get_trending():
